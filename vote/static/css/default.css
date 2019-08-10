@@ -1,0 +1,170 @@
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #ffc107;
+    color: black;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+/* .cards {
+	display: inline-block;
+} */
+.card {
+	width: 20rem;
+}
+.rem_anchor {
+	cursor: pointer;
+	color: black;
+}
+.bgcolor {
+	background: rgba(0, 0, 0, 0.75);
+	color: white;
+	border-radius: 5px;
+}
+#footer {
+	padding: 0px 30px;
+}
+.ad_card {
+	background: #e9ecef;
+}
+.w-50 {
+	margin-bottom: 10px;
+}
+
+.advs {
+	margin-bottom: 20px;
+	border-radius: 8px;
+}
+.ads_anchor {
+	cursor: pointer;
+}
+.pad {
+	padding: 20px 2%;
+}
+
+.adv_small {
+	display: none;
+}
+.text_container {
+	height: 100px;
+}
+.box_h {
+	min-height: 50px;
+}
+@media only screen and (max-width: 768px){
+	.advs {
+		display: none;
+	}
+	.cards {
+		width: 17.6rem;
+	}
+	.adv_small {
+		display: block !important;
+	}
+	.adv_big {
+		display: none !important;
+	}
+	#w-md {
+		width: 100% !important;
+	}
+	.col-lg-10 {
+		margin: 0px !important;
+	}
+	.login_btn{
+		left: -15px;
+	}
+	.signup_btn{
+		left: -13px;
+	}
+	.w_img {
+		height: 300px;
+	}
+}
+
+@media only screen and (min-width: 769px){
+	.col-lg-10 {
+		margin: 0px 5% !important;
+	}
+	.ad_card {
+		width: 20rem;
+	}
+	.login_btn{
+		left: -25px;
+	}
+	.signup_btn{
+		left: -23px;
+	}
+	.w_img {
+		height: 400px;
+	}
+}
+@media only screen and (min-width: 1025px){
+	.col-lg-10 {
+		margin: 0px 10% !important;
+	}
+	.ad_card {
+		width: 25rem;
+	}
+	.w_img {
+		height: 500px;
+	}
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+/* @media (max-width: 575.98px) { ... } */
+
+/*  Small devices (landscape phones, less than 768px) */
+/* @media (max-width: 767.98px) { ... } */
+
+/*  Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+	.advs {
+			display: none;
+		}
+	.adv_small {
+			display: block !important;
+		}
+	.adv_big {
+			display: none !important;
+		}
+}
+
+/*  Large devices (desktops, less than 1200px) */
+/* @media (max-width: 1199.98px) { ... } */
+
+/*  Extra large devices (large desktops) */
+/*  No media query since the extra-large breakpoint has no upper bound on its width */

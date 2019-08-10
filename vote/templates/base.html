@@ -1,0 +1,129 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />e
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/layout.css'%}" />
+    <link rel="shortcut icon" href="{% static 'img/SUG logo.jpg'%}" />
+    <title>SUG AWARD</title>
+  </head>
+  <body>
+    <nav class=" navbar   navbar-expand-sm navbar-transparent bg-transparent    sticky-top "  >
+        <div class="container">
+      <a class="navbar-brand" href="{% url 'vote:index'%}">
+        <img
+          class="rounded p-0 "
+          src="/static/img/suga awards logos.jpeg"
+          width="100"
+          height="50"
+          alt="sug logo"
+        />
+      </a>
+      <a class="navbar-brand" href="{% url 'vote:index'%}">
+        <img
+          class="rounded p-0 "
+          src="/static/img/SUG logo.jpg"
+          width="100"
+          height="50"
+          alt="sug logo"
+        />
+      </a>
+      <a class="navbar-brand" href="{% url 'vote:index'%}">
+        <img
+          class="rounded p-0 "
+          src="/static/img/FUT logo.jpg"
+          width="100"
+          height="50"
+          alt="sug logo"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navba"
+        aria-controls="navigation-index"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+
+        <span class="navbar-toggler-icon text-dark"></span>
+       
+      </button>
+      <div
+        class="collapse navbar-collapse  "
+        id="navba"
+      >
+        <ul class="navbar-nav ">
+          <li class="nav-item active">
+            <a class="nav-link" href="url 'vote:index'"
+              >Home </a
+            >
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="./templates/about.html">
+               
+                  <p>About Us</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+               
+                  <p>Team</p>
+                </a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+               
+                  <p>Contact</p>
+                </a>
+              </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'vote:logout' %}" class=" nav-link">Logout</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    </nav>
+       <hr class="lightx">
+                </div>
+    {% include 'messages.html' %}
+
+    <div class="container">
+      <div class="row">
+        {% block content %} {% endblock content %}
+      </div>
+    </div>
+    <footer class="footer">
+ <div class=" copyright text-center ">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>
+        <a href="https://www.github.io/nuksi911/my_portfolio" target="_blank">Nuru Design</a> 
+      </div>
+ </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+      integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+      integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
