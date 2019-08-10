@@ -5,7 +5,7 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1"
-    />e
+    />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{% static 'css/layout.css'%}" />
@@ -13,8 +13,9 @@
     <title>SUG AWARD</title>
   </head>
   <body>
-    <nav class=" navbar   navbar-expand-sm navbar-transparent bg-transparent    sticky-top "  >
+    <nav class=" navbar   navbar-expand-md navbar-light bg-transparent    sticky-top "  >
         <div class="container">
+          <div class="d-block">
       <a class="navbar-brand" href="{% url 'vote:index'%}">
         <img
           class="rounded p-0 "
@@ -42,6 +43,7 @@
           alt="sug logo"
         />
       </a>
+    </div>
       <button
         class="navbar-toggler"
         type="button"
@@ -65,24 +67,7 @@
               >Home </a
             >
           </li>
-          <li class="nav-item">
-                <a class="nav-link" href="./templates/about.html">
-               
-                  <p>About Us</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-               
-                  <p>Team</p>
-                </a>
-              </li>
-                <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-               
-                  <p>Contact</p>
-                </a>
-              </li>
+          
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a href="{% url 'vote:logout' %}" class=" nav-link">Logout</a>
@@ -107,6 +92,7 @@
         <script>
           document.write(new Date().getFullYear())
         </script>
+        made with <i class="fas fa-heart"></i> by 
         <a href="https://www.github.io/nuksi911/my_portfolio" target="_blank">Nuru Design</a> 
       </div>
  </footer>
@@ -125,5 +111,6 @@
       integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
       crossorigin="anonymous"
     ></script>
+    <script src="https://kit.fontawesome.com/35068a7079.js"></script>
   </body>
 </html>
