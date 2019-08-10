@@ -69,15 +69,16 @@
           </li>
           
           {% if request.user.is_authenticated %}
-          <li class="nav-item">
+        <DIV class="float-right"> <li class="nav-item ">
             <a href="{% url 'vote:logout' %}" class=" nav-link">Logout</a>
           </li>
+        </DIV> 
           {% endif %}
         </ul>
       </div>
     </div>
     </nav>
-       <hr class="lightx">
+       <hr class="light">
                 </div>
     {% include 'messages.html' %}
 
