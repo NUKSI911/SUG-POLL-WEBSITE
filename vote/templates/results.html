@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" container bg-light">
+    <div class="col-sm-12 col-md-6 col-lg-12">
+        <h1 class="text-dark"> Vote Results </h1>
+
+        {% for category, result in results.items %}
+        <details>
+          <summary><b class="my-3">{{ category.name}}</b></summary>
+            <ol>
+            {% for candidate, res in result.items %}
+              <li>{{ candidate }} - <span class='mx-2 badge badge-primary'>{{ res }}</span></li>
+            {% endfor %}
+            </ol>
+          </details>
+        {% endfor %}
+            
+    </div>
+</div>
+{% endblock content %}

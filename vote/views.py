@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import  UserPassesTestMixin
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.messages import success
 from django.views.generic import FormView
+from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from vote.forms import LoginForm, VotingForm
 from vote.models import VoteCategory
 
 
 @method_decorator(login_required, name='dispatch')
-class Index(FormView):
+class IndexView(FormView):
     form_class = VotingForm
     template_name = 'index.html'
     success_url = reverse_lazy('vote:index')
@@ -41,6 +43,7 @@ class Index(FormView):
             })
         return kwargs
 
+
 class AuthLoginView(LoginView):
     authentication_form = LoginForm
     template_name = 'login.html'
@@ -49,10 +52,24 @@ class AuthLoginView(LoginView):
         return reverse('vote:index')
 
 
-def result(request):
-    if not request.user.is_staff or request.user.is_admin:
-        return redirect('vote:index')
-    return render('results.html')
+class ResultView(UserPassesTestMixin, TemplateView):
+    template_name = 'results.html'
+
+    def test_func(self):
+        """ Results is only available to Admin or Staff"""
+        return self.request.user.is_staff or self.request.user.is_superuser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        results = {}
+        for category in VoteCategory.objects.all():
+            res = {}
+            for candidate in category.candidates.all():
+                res[candidate] = category.votes.filter(candidate=candidate).count()
+            results[category] = res
+        context['results'] = results
+        return context
+
 
 def test_flowcell(request):
     c = RequestContext(request, {'other_context':'details here'})

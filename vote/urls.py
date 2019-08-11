@@ -7,8 +7,7 @@ app_name = 'vote'
 
 urlpatterns = [
     path('login', views.AuthLoginView.as_view(), name='login'),
-    path('results/', views.result, name='result'),
+    path('results/', views.ResultView.as_view(), name='result'),
     path('logout/',logout_then_login, name='logout'),
-    path('index/', views.Index.as_view(), name='index'),
-    path('', views.Index.as_view(), name='index')
+    path('', views.IndexView.as_view(), name='index')
 ]

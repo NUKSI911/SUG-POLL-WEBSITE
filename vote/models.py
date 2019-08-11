@@ -15,10 +15,17 @@ class Candidate(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name} - ({self.nick_name})'
 
+    @property
+    def fullname(self):
+        return f'{self.first_name} {self.last_name} - ({self.nick_name})'
+
 
 class VoteCategory(models.Model):
     name = models.CharField(max_length=225)
     candidates = models.ManyToManyField(Candidate)
+
+    class Meta:
+        verbose_name_plural = 'Vote Categories'
 
     def __str__(self):
         return f'<Category: {self.name}>'
@@ -29,6 +36,10 @@ class VoteCategory(models.Model):
     @classmethod
     def eligible_category(cls, user):
         return VoteCategory.objects.exclude(vote__user=user)
+
+    @property
+    def votes(self):
+        return self.vote_set.all()
 
 
 class Vote(models.Model):
