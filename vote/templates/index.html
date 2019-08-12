@@ -19,7 +19,6 @@
         <form method='POST'>
             <div class="form-group">
                 {% csrf_token %}
-                <h5>{{category.name}}</h5>               
                 {{ form.category|add_value:category.id }}
                 
                 <div class="form-group">

@@ -6,6 +6,11 @@ class User(AbstractUser):
     matric_number = models.CharField(max_length=20, unique=True)
     middle_name = models.CharField(max_length=30,null=True)
 
+    def full_name(self):
+        if self.is_superuser or self.is_staff:
+            return self.username
+        return f"{self.first_name} {self.middle_name} {self.last_name}"
+
 
 class Candidate(models.Model):
     first_name = models.CharField(max_length=20)

@@ -17,31 +17,14 @@
         <div class="container">
           <div class="d-block">
       <a class="navbar-brand" href="{% url 'vote:index'%}">
-        <img
-          class="rounded p-0 "
-          src="/static/img/suga awards logos.jpeg"
-          width="100"
-          height="50"
-          alt="sug logo"
+        <img class="rounded p-0 " src="/static/img/suga awards logos.jpeg" width="100" height="50" alt="sug logo"
         />
       </a>
       <a class="navbar-brand" href="{% url 'vote:index'%}">
-        <img
-          class="rounded p-0 "
-          src="/static/img/SUG logo.jpg"
-          width="100"
-          height="50"
-          alt="sug logo"
-        />
+        <img class="rounded p-0 " src="/static/img/SUG logo.jpg" width="100" height="50" alt="sug logo" />
       </a>
       <a class="navbar-brand" href="{% url 'vote:index'%}">
-        <img
-          class="rounded p-0 "
-          src="/static/img/FUT logo.jpg"
-          width="100"
-          height="50"
-          alt="sug logo"
-        />
+        <img class="rounded p-0 " src="/static/img/FUT logo.jpg" width="100" height="50" alt="sug logo" />
       </a>
     </div>
       <button
@@ -57,22 +40,24 @@
         <span class="navbar-toggler-icon text-dark"></span>
        
       </button>
-      <div
-        class="collapse navbar-collapse  "
-        id="navba"
-      >
+      <div class="collapse navbar-collapse" id="navba" >
         <ul class="navbar-nav ">
+          {% if not request.user.is_authenticated %}
           <li class="nav-item active">
-            <a class="nav-link" href="url 'vote:index'"
-              >Home </a
-            >
+            <a class="nav-link" href="{% url 'vote:index' %}">Home </a>
           </li>
           
-          {% if request.user.is_authenticated %}
-        <DIV class="float-right"> <li class="nav-item ">
-            <a href="{% url 'vote:logout' %}" class=" nav-link">Logout</a>
-          </li>
-        </DIV> 
+          {% else %}
+            <div class="float-right"> 
+              <li class="nav-item ">
+                {{ request.user.full_name }}
+              </li>
+            </div > 
+            <div class="float-right"> 
+              <li class="nav-item ">
+                <a href="{% url 'vote:logout' %}" class=" nav-link">Logout</a>
+              </li>
+            </div > 
           {% endif %}
         </ul>
       </div>
