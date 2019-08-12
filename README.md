@@ -5,8 +5,6 @@ A simple Django project for Voting for SUG Polls in FUTMinna
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Running Locally](#running-locally)
-- [Deploy](#deploy)
-- [Code Structure](#code-structure)
 
 ## Getting Started
 
