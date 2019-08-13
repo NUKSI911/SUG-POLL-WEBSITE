@@ -7,12 +7,10 @@
         <form action="/login" method='POST'>
           <div class="card-header card-header-primary text-center">
                  
-        {% if form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {% for errors in form.non_field_errors %}
-                          {% for  error in errors %}
+              {% if form.non_field_errors %}
+                      <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
                             {{ error }}
-                          {% endfor %}
                         {% endfor %}
                     </div>
                 {% endif %}
