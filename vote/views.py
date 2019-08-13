@@ -54,6 +54,7 @@ class AuthLoginView(LoginView):
 
 class ResultView(UserPassesTestMixin, TemplateView):
     template_name = 'results.html'
+    login_url = reverse_lazy('vote:index')
 
     def test_func(self):
         """ Results is only available to Admin or Staff"""
