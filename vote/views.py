@@ -8,7 +8,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from vote.forms import LoginForm, VotingForm
-from vote.models import VoteCategory
+from vote.models import VoteCategory, VoteCount
 
 
 @method_decorator(login_required, name='dispatch')
@@ -65,8 +65,8 @@ class ResultView(UserPassesTestMixin, TemplateView):
         results = {}
         for category in VoteCategory.objects.all():
             res = {}
-            for candidate in category.candidates.all():
-                res[candidate] = category.votes.filter(candidate=candidate).count()
+            for count in category.votes:
+                res[count.candidate] = count.number
             results[category] = res
         context['results'] = results
         return context
