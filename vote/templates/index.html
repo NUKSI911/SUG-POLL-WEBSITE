@@ -1,24 +1,21 @@
-{% extends 'base.html' %}
+  {% extends 'base.html' %}
 {% load form_manip %}
 
 {% block content %}
-<div class=" container bg-light">
+<div class=" container">
     <div class="col-sm-12 col-md-6 col-lg-12">
         <h1 class="text-dark">Kindly Vote For Your Selected Candidate</h1>
-        {% for type, errors in form.errors.items %}
-          <div class='alert alert-danger'>
-            {% for error in errors %}
-              {{ error }}
-            {% endfor %}
-          </div>
+        {% for error in form.errors %}
+            <div class='alert alert-danger'>{{ error }}</div>
         {% endfor %}
 
         {% for category in categories %}
-        <details>
-          <summary><b class="my-3">{{ category.name}}</b></summary>
+        <button type="button" class="btn btn-primary d-block  p-auto mb-4" data-toggle="collapse" data-target="#{{category.id}}">{{ category.name}}</button>
+     <div class="collapse" id="{{category.id}}">
         <form method='POST'>
             <div class="form-group">
                 {% csrf_token %}
+                                                                                                                                                                                                                         <h5>{{category.name}}</h5>               
                 {{ form.category|add_value:category.id }}
                 
                 <div class="form-group">
@@ -35,12 +32,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Vote" class="btn btn-primary">
+                <input type="submit" class="btn btn-outline-primary">
             </div>
         </form>
-    </details>     
+    </div>     
         {% endfor %}
             
     </div>
 </div>
 {% endblock content %}
+
