@@ -45,19 +45,8 @@ class VoteCategory(models.Model):
 
     @property
     def votes(self):
-        return self.votecount_set.all().order_by('-number')
+        return self.vote_set.all()
 
-    @property
-    def highest_vote_count(self):
-        return self.votecount_set.all().aggregate(Max('number'))['number__max']
-
-    @property
-    def top(self):
-        return self.votecount_set.all().filter(number=self.highest_vote_count)
-
-    @property
-    def top_candidates(self):
-        return [count.candidate for count in self.top ]
 
 class Vote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='voter')
@@ -71,13 +60,3 @@ class Vote(models.Model):
         return f'{self.candidate.nick_name} - {self.category.name}'
 
 
-class VoteCount(models.Model):
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
-    category = models.ForeignKey(VoteCategory, on_delete=models.CASCADE)
-    number = models.IntegerField(default=0)
-
-    class Meta:
-        unique_together = ('candidate', 'category')
-
-    def __str__(self):
-        return f'{self.candidate.nick_name} - {self.category.name}: {self.number}'

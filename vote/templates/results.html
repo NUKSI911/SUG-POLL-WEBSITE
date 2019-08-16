@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
+{% load form_manip %}
 
 {% block content %}
 <div class=" container bg-light">
     <div class="col-sm-12 col-md-6 col-lg-12">
         <h1 class="text-dark"> Vote Results </h1>
 
-        {% for category, result in results.items %}
+        {% for category, item in results.items %}
         <details>
           <summary><b class="my-3">{{ category.name}}</b></summary>
             <ol>
-            {% for count in category.top %}
-                <li class="bg-success px-2">{{ count.candidate }} - <span class='mx-2 badge badge-light'>{{ count.number}}</span></li>
-            {% endfor %}
-            {% for candidate, res in result.items %}
-              {% if not candidate in category.top_candidates %} 
-                <li>{{ candidate }} - <span class='mx-2 badge badge-primary'>{{ res }}</span></li>
-              {% endif %}
-            {% endfor %}
+              {% with winner=item|get_item:'winner' result=item|get_item:'items' %}
+                {% for candidate, res in result.items %}
+                  {% if candidate in winner %}
+                    <li class="bg-success">{{ candidate }} - <span class='mx-2 badge badge-primary'>{{ res }}</span></li>
+                  {% else %}
+                    <li>{{ candidate }} - <span class='mx-2 badge badge-primary'>{{ res }}</span></li>
+                  {% endif %}
+                {% endfor %}
+              {% endwith %}
             </ol>
           </details>
         {% endfor %}
