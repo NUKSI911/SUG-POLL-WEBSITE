@@ -67,6 +67,9 @@ class ResultView(UserPassesTestMixin, TemplateView):
             res = {}
             for count in category.votes:
                 res[count.candidate] = count.number
+            for candidate in category.candidates.all():
+                if candidate not in res.keys():
+                    res[candidate] = 0
             results[category] = res
         context['results'] = results
         return context
