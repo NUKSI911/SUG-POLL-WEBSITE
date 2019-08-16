@@ -71,8 +71,13 @@ class ResultView(UserPassesTestMixin, TemplateView):
                 candidate_count = category.votes.filter(candidate=candidate).count()
                 if candidate_count > 0:
                     if candidate_count >= winner_count:
+                        print(candidate_count, winner_count)
+                        if candidate_count > winner_count:
+                            winner.clear()
+                            winner += [candidate, ]
+                        else:
+                            winner += [candidate, ]
                         winner_count = candidate_count
-                        winner += [candidate, ]
                 res[candidate] = candidate_count
             results[category] = {'winner': winner, 'items': res}
         context['results'] = results
