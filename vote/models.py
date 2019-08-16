@@ -10,6 +10,8 @@ class User(AbstractUser):
     def full_name(self):
         if self.is_superuser or self.is_staff:
             return self.username
+        if not self.middle_name:
+            return f"{self.first_name} {self.last_name}"
         return f"{self.first_name} {self.middle_name} {self.last_name}"
 
 
