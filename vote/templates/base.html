@@ -7,9 +7,11 @@
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/layout.css'%}" />
+    {% block css %}
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/layout.css'%}" />
+    {% endblock %}
     <link rel="shortcut icon" href="{% static 'img/SUG logo.jpg'%}" />
     <title>SUG AWARD</title>
   </head>
@@ -80,8 +82,10 @@
         <a href="https://www.github.io/nuksi911/my_portfolio" target="_blank">Nuru Design</a> 
       </div>
  </footer>
+  {% block script %}
     <script src="{% static 'js/jquery.min.js' %}" ></script>
     <script src="{% static 'js/popper.min.js' %}" ></script>
     <script src="{% static 'js/bootstrap.min.js' %}" ></script>
+  {% endblock %}
   </body>
 </html>

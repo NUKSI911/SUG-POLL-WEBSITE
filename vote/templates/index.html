@@ -14,7 +14,7 @@
         {% endfor %}
 
         {% for category in categories %}
-        <details>
+        <details id="{{ category.id_name }}">
           <summary><b class="my-3">{{ category.name}}</b></summary>
         <form method='POST'>
             <div class="form-group">
@@ -44,4 +44,13 @@
     </div>
 </div>
 {% endblock content %}
+{% block script %}
+  {{ block.super }}
+  <script>
+    const cat_id = location.hash
+    if (cat_id){
+      $(cat_id).attr('open', '');
+    }
+  </script>
+{% endblock %}
 

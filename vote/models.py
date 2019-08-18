@@ -49,6 +49,9 @@ class VoteCategory(models.Model):
     def votes(self):
         return self.vote_set.all()
 
+    def id_name(self):
+        return self.name.lower().replace(' ', '-')
+
 
 class Vote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='voter')
