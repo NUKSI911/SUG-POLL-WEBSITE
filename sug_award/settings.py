@@ -30,6 +30,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["sugaward.com.ng", "www.sugaward.com.ng",'*']
 
+# Authentication backends
+ 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'vote.auth.AuthenticationMatricNumberAnyNameBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 # Application definition
 
 INSTALLED_APPS = [

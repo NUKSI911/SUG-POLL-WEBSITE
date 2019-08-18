@@ -12,24 +12,15 @@ class LoginForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         help_text="One of your names"
     )
-    
-    def clean(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password').lower()
 
-        if username is not None and password:
-            try:
-                self.user_cache = User.objects.get(matric_number__iexact=username)
-                # Sometimes middle_name might be none. Filter only fields that have values
-                # And compare to password
-                if not password.lower() in [x.lower() for x in (self.user_cache.first_name,\
-                        self.user_cache.last_name, self.user_cache.middle_name) if x]:
-                    raise self.get_invalid_login_error()
-                else:
-                    self.confirm_login_allowed(self.user_cache)
-            except User.DoesNotExist:
-                raise self.get_invalid_login_error()
-        return self.cleaned_data
+    error_messages = {
+        **AuthenticationForm.error_messages,
+        'invalid_login': (
+            "Please enter a correct %(username)s and password. "
+            "Confirm that your matric number and name combination is correct"
+        ),
+    }
+    
 
 
 class VotingForm(forms.ModelForm):
