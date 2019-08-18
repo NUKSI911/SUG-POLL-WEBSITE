@@ -20,7 +20,10 @@ class LoginForm(AuthenticationForm):
         if username is not None and password:
             try:
                 self.user_cache = User.objects.get(matric_number__iexact=username)
-                if self.user_cache.first_name.lower() != password and self.user_cache.last_name.lower() != password and self.user_cache.middle_name.lower() != password :
+                # Sometimes middle_name might be none. Filter only fields that have values
+                # And compare to password
+                if not password.lower() in [x.lower() for x in (self.user_cache.first_name,\
+                        self.user_cache.last_name, self.user_cache.middle_name) if x]:
                     raise self.get_invalid_login_error()
                 else:
                     self.confirm_login_allowed(self.user_cache)
