@@ -6,10 +6,14 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     matric_number = models.CharField(max_length=20, unique=True)
     middle_name = models.CharField(max_length=30,null=True)
+    # A Reporter has access to the results page but not the admin page
+    is_reporter = models.BooleanField(default=False)
 
     def full_name(self):
         if self.is_superuser or self.is_staff:
-            return self.username
+            return "Admin"
+        if self.is_reporter:
+            return "SUG Admin"
         if not self.middle_name:
             return f"{self.first_name} {self.last_name}"
         return f"{self.first_name} {self.middle_name} {self.last_name}"

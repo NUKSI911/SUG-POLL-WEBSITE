@@ -44,14 +44,18 @@
         <ul class="navbar-nav ml-auto">
           {% if not request.user.is_authenticated %}
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'vote:index' %}">Home </a>
+            <a class="nav-link text-primary mr-md-3" href="{% url 'vote:index' %}">Home </a>
           </li>
           {% else %}
-              <li class="nav-item text-light py-3 py-md-2">
-                <i class="fa fa-user"></i> <em>{{ request.user.full_name }}</em>
-             {% if request.user.is_staff and request.user.is_authenticated %} 
+            <li class="nav-item text-light py-3 py-md-2">
+              <i class="fa fa-user"></i> <em>{{ request.user.full_name }}</em>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link text-primary mx-md-2" href="{% url 'vote:index' %}">Home </a>
+            </li>
+             {% if request.user.is_staff or request.user.is_reporter %} 
                 <li class="nav-item">
-                  <a href="{% url 'vote:result' %}" class="nav-link text-primary">Result</a>
+                  <a href="{% url 'vote:result' %}" class="nav-link text-primary mr-md-2">View Results</a>
                 </li>
              {% endif %}
               <li class="nav-item ">
@@ -79,7 +83,7 @@
           document.write(new Date().getFullYear())
         </script>
         made with <i class="fas fa-heart"></i> by 
-        <a href="https://www.github.io/nuksi911/my_portfolio" target="_blank">Nuru Design</a> 
+        <a href="https://www.github.io/nuksi911/my_portfolio" target="_blank">durudgenix</a> 
       </div>
  </footer>
   {% block script %}

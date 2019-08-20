@@ -35,7 +35,7 @@ class VotingForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
     def clean_user(self):
-        if self.request.user.is_staff or self.request.user.is_superuser:
+        if self.request.user.is_staff or self.request.user.is_superuser or self.request.user.is_reporter:
             raise forms.ValidationError("Admins/Staff cannot vote")
         return self.request.user
 

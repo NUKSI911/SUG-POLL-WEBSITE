@@ -58,7 +58,7 @@ class ResultView(UserPassesTestMixin, TemplateView):
 
     def test_func(self):
         """ Results is only available to Admin or Staff"""
-        return self.request.user.is_staff or self.request.user.is_superuser
+        return self.request.user.is_staff or self.request.user.is_superuser or self.request.user.is_reporter
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
