@@ -5,3 +5,12 @@
     {% endfor %}
 </div>
 {% endif %}
+{% if form and form.errors %}
+  {% for type, errors in form.errors.items %}
+    <div class='alert alert-danger'>
+      {% for error in errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endfor %}
+{% endif %}
